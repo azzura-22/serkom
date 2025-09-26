@@ -74,19 +74,39 @@
 </header>
 <div class="container">
     <div class="content">
-        <h2>Ringkasan</h2>
+        <h2>Data Ringkasan</h2>
         <div class="cards">
             <div class="card">
-
+                <div class="card">
+                    <div class="container-fluid d-flex justify-content-center align-items-center">
+                        <h3 class="me-2">Guru</h3>
+                        <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
+                    </div>
+                </div>
             </div>
             <div class="card">
-
+                <div class="card">
+                    <div class="container-fluid d-flex justify-content-center align-items-center">
+                        <h3 class="me-2">murid</h3>
+                        <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
+                    </div>
+                </div>
             </div>
             <div class="card">
-
+                <div class="card">
+                <div class="container-fluid d-flex justify-content-center align-items-center">
+                    <h3 class="me-2">foto</h3>
+                    <i class="fa-solid fa-image" style="font-size: 30px;"></i>
+                </div>
+            </div>
             </div>
             <div class="card">
-
+                <div class="card">
+                <div class="container-fluid d-flex justify-content-center align-items-center">
+                    <h3 class="me-2">extrakulikuler</h3>
+                    <i class="fa-solid fa-face-smile" style="font-size: 30px;"></i>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -99,7 +119,7 @@
 
             </tr>
             <tr>
-                
+
             </tr>
         </table>
     </div>
