@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\guru;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::create([
+            'name' => 'admin11',
+            'username' => 'admin22',
+            'level' => 'admin',
+            'password' => '111',
+        ]);
+        Guru::create([
+            'name_guru' => 'Budi',
+            'nip' => '1234567890',
+            'mapel' => 'Matematika',
+            'foto' => 'default.jpg',
         ]);
     }
 }

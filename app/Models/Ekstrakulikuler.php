@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ekstrakulikuler extends Model
+class Ekstrakulikuler extends Model
 {
     //
 }

@@ -1,6 +1,7 @@
 @extends('admin.template')
 @section('content')
 <div class="container mt-4">
+    <a href="/admin/guru/add" class="btn btn-primary">tambah</a>
   <h3 class="text-center mb-3">Daftar Guru</h3>
   <table class="table table-bordered table-striped table-hover">
     <thead class="table-dark">
