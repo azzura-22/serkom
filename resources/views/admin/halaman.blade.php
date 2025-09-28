@@ -82,6 +82,7 @@
                         <h3 class="me-2">Guru</h3>
                         <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                     </div>
+                    <h3>{{$guru->count()}}</h3>
                 </div>
             </div>
             <div class="card">

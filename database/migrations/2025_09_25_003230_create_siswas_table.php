@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nisn');
-            $table->string('nama_siswa');
             $table->enum('jenis_kelamin',['L','p']);
             $table->year('tahun_masuk');
             $table->timestamps();

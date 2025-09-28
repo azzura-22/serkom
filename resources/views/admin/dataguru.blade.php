@@ -6,31 +6,24 @@
   <table class="table table-bordered table-striped table-hover">
     <thead class="table-dark">
       <tr>
-        <th>No</th>
         <th>Nama</th>
         <th>Mata Pelajaran</th>
-        <th>Email</th>
+        <th>nip</th>
+        <th>actiion</th>
       </tr>
     </thead>
     <tbody>
+      @foreach ($guru as $item )
       <tr>
-        <td>1</td>
-        <td>Budi Santoso</td>
-        <td>Matematika</td>
-        <td>budi@example.com</td>
+        <td>{{$item->name_guru}}</td>
+        <td>{{$item->mapel}}</td>
+        <td>{{$item->nip}}</td>
+        <td>
+            <a class="btn btn-primary" href="{{route('admin.editguru', Crypt::encrypt($item->id))}}">ubah</a>
+            <a class="btn btn-danger" href="{{route('guru.delete', Crypt::encrypt($item->id))}}" onclick="return confirm('Yakin ingin menghapus data ini?')">delete</a>
+        </td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>Siti Aminah</td>
-        <td>Bahasa Indonesia</td>
-        <td>siti@example.com</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Andi Wijaya</td>
-        <td>IPA</td>
-        <td>andi@example.com</td>
-      </tr>
+      @endforeach
     </tbody>
   </table>
 </div>

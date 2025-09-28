@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -9,10 +10,12 @@ class AdminController extends Controller
 {
     //
     public function index(){
-        return view("admin.halaman");
+        $data['guru']=Guru::all();
+        return view("admin.halaman",$data);
     }
     public function guru(){
-        return view('admin.dataguru');
+        $data['guru'] = Guru::all();
+        return view('admin.dataguru',$data);
     }
     public function login(){
         return view('login');
