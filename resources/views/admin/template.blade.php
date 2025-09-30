@@ -39,20 +39,20 @@
             </div>
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
+                            <a href="{{route('admin')}}" class="nav-link d-flex align-items-center">
                                 <i class="fas fa-home me-2" style="font-size: 1rem;"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
+                            <a href="{{route('admin.siswa')}}" class="nav-link d-flex align-items-center">
                                 <i class="fas fa-users me-2" style="font-size: 1rem;"></i>
                                 Daftar siswa
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
-                                <i class="fas fa-money-bill-wave me-2" style="font-size: 1rem;"></i>
+                            <a href="{{route('admin.guru')}}" class="nav-link d-flex align-items-center">
+                                <i class="fas fa-users me-2" style="font-size: 1rem;"></i>
                                 Daftar guru
                             </a>
                         </li>
@@ -69,7 +69,7 @@
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
+                            <a href="{{route('admin.ekstrakulikuler')}}" class="nav-link d-flex align-items-center">
                                 <i class="fas fa-arrow-up me-2" style="font-size: 1rem;"></i>
                                 Extrakulikuler
                             </a>
@@ -81,7 +81,7 @@
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
+                            <a href="{{route('logout')}}" class="nav-link d-flex align-items-center">
                                 <i class="fas fa-sign-out-alt me-2" style="font-size: 1rem;"></i>
                                 Logout
                             </a>

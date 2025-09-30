@@ -91,14 +91,16 @@
                         <h3 class="me-2">murid</h3>
                         <i class="fa-solid fa-circle-user" style="font-size: 30px;"></i>
                     </div>
+                    <h3>{{$siswa->count()}}</h3>
                 </div>
             </div>
             <div class="card">
                 <div class="card">
                 <div class="container-fluid d-flex justify-content-center align-items-center">
-                    <h3 class="me-2">foto</h3>
+                    <h3 class="me-2">galeri</h3>
                     <i class="fa-solid fa-image" style="font-size: 30px;"></i>
                 </div>
+                <h3>{{$galeri->count()}}</h3>
             </div>
             </div>
             <div class="card">
@@ -107,6 +109,7 @@
                     <h3 class="me-2">extrakulikuler</h3>
                     <i class="fa-solid fa-face-smile" style="font-size: 30px;"></i>
                 </div>
+                <h3>{{$eks->count()}}</h3>
             </div>
             </div>
         </div>

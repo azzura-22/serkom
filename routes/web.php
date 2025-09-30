@@ -1,8 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\EkstrakulikulerController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\admin;
 use App\Models\Guru;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +29,31 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/siswa/delete/{id}',[SiswaController::class,'delete'])->name('siswa.delete');
     Route::get('/admin/siswa/edit/{id}',[SiswaController::class,'edit'])->name('admin.editsiswa');
     Route::post('/admin/siswa/update/{id}',[SiswaController::class,'update'])->name('admin.updatesiswa');
+
+    //ekstrakulikulers
+    Route::get('/admin/ekstrakulikuler',[EkstrakulikulerController::class,'index'])->name('admin.ekstrakulikuler');
+    Route::get('/admin/ekstrakulikuler/add',[EkstrakulikulerController::class,'add'])->name('admin.addekstrakulikuler');
+    Route::post('/admin/ekstrakulikuler/store',[EkstrakulikulerController::class,'store'])->name('admin.storeekstrakulikuler');
+    Route::get('/admin/ekstrakulikuler/delete/{id}',[EkstrakulikulerController::class,'delete'])->name('ekstra.delete');
+    Route::get('/admin/ekstrakulikuler/edit/{id}',[EkstrakulikulerController::class,'edit'])->name('admin.editekstrakulikuler');
+    Route::post('/admin/extrakulikuler/update/{id}',[EkstrakulikulerController::class,'update'])->name('admin.ekstraupdate');
+
+    //Galeri
+    Route::get('/admin/galeri',[GaleriController::class,'index'])->name('admin.galeri');
+    Route::get('/admin/galeri/add',[GaleriController::class,'add'])->name('admin.addgaleri');
+    Route::post('/admin/galeri/store',[GaleriController::class,'store'])->name('admin.storegaleri');
+    Route::get('/admin/galeri/delete/{id}',[GaleriController::class,'delete'])->name('admin.deletegaleri');
+
+    //berita
+    Route::get('/admin/berita',[BeritaController::class,'index'])->name('admin.berita');
+    Route::get('/admin/berita/add',[BeritaController::class,'add'])->name('admin.berita.add');
+    Route::post('/admin/berrita/store',[BeritaController::class,'store'])->name('admin.berita.store');
+    Route::get('/admin/berita/detail/{id}',[BeritaController::class,'show'])->name('admin.berita.show');
+    Route::get('/admin/berita/delete/{id}',[BeritaController::class,'delete'])->name('admin.berita.delete');
+    Route::get('/admin/berita/edit/{id}',[BeritaController::class,'edit'])->name('admin.berita.edit');
+    Route::post('/admin/berita/update/{id}',[BeritaController::class,'update'])->name('admin.berita.update');
+
+    Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 });
+//user
+Route::get('/user',[UserController::class,'home'])->name('user');
