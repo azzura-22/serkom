@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('operator.template')
 
 @section('content')
 <div class="container py-5">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body p-4">
 
-                    <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('operator.berita.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <!-- Judul -->

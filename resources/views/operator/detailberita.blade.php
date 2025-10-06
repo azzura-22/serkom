@@ -20,7 +20,7 @@
         </div>
 
         <div class="card-footer">
-            <a href="{{ route('admin.berita') }}" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('operator.berita') }}" class="btn btn-secondary">Kembali</a>
         </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ use App\Models\Galeri;
 use App\Models\Profilesekolah;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
@@ -28,7 +29,8 @@ public function show()
     }
     public function user(){
         $users = User::all();
-        return view('admin.datauser',compact('users'));
+        $prefix = Auth::user()->level;
+        return view($prefix.'.datauser',compact('users'));
     }
     public function add(){
         return view('admin.adduser');
@@ -73,9 +75,5 @@ public function show()
     public function destroy($id){
         User::find($id)->delete();
         return redirect()->route('admin.user');
-    }
-    public function template(){
-        $berita = Berita::latest()->take(3)->get();
-        return view('user.template',compact('berita'));
     }
 }

@@ -21,7 +21,8 @@ class AdminController extends Controller
     }
     public function guru(){
         $data['guru'] = Guru::all();
-        return view('admin.dataguru',$data);
+        $prefix = Auth::user()->level;
+        return view($prefix.'.dataguru',$data);
     }
     public function login(){
         return view('login');
@@ -35,7 +36,11 @@ class AdminController extends Controller
         if (Auth::attempt($request->only('username', 'password'))) {
             if (Auth::user()->level == 'admin') {
                 return redirect()->route('admin');
-            } else {
+            }
+            elseif (Auth::user()->level == 'operator'){
+                return redirect()->route('operator');
+            }
+            else {
                 return redirect()->back();
             }
         }
@@ -43,5 +48,12 @@ class AdminController extends Controller
     public function logout () {
         Auth::logout();
         return redirect()->route('login');
+    }
+    public function in(){
+        $data['guru']=Guru::all();
+        $data['siswa']=Siswa::all();
+        $data['eks']=Ekstrakulikuler::all();
+        $data['galeri']=Galeri::all();
+        return view('operator.halaman',$data);
     }
 }

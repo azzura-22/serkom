@@ -6,13 +6,15 @@ use App\Models\Guru;
 use App\Models\Profilesekolah;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class GuruController extends Controller
 {
     //
     public function addguru(){
-        return view('admin.addguru');
+        $prefix = Auth::user()->level;
+        return view($prefix.'.addguru');
     }
    public function store(Request $request)
     {
@@ -37,13 +39,14 @@ class GuruController extends Controller
             'mapel'     => $request->mapel,
             'foto'      => $filename,
         ]);
-
-        return redirect()->route('admin.guru')->with('success', 'Data guru berhasil ditambahkan!');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.guru')->with('success', 'Data guru berhasil ditambahkan!');
     }
     public function edit ($id){
         $id = Crypt::decrypt($id);
         $guru = Guru::find($id);
-        return view('admin.editguru', compact('guru'));
+        $prefix = Auth::user()->level;
+        return view($prefix.'.editguru', compact('guru'));
     }
     public function update (Request $request,string $id){
         $request->validate([
@@ -66,15 +69,17 @@ class GuruController extends Controller
             'mapel'     => $request->mapel,
             'foto'      => $filename,
         ]);
-        return redirect()->route('admin.guru')->with('success', 'Data guru berhasil diupdate!');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.guru')->with('success', 'Data guru berhasil diupdate!');
     }
     public function delete (string $id){
         $id = Crypt::decrypt($id);
         $guru = Guru::find($id);
         $guru->delete();
-        return redirect()->route('admin.guru')->with('success', 'Data guru berhasil dihapus!');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.guru')->with('success', 'Data guru berhasil dihapus!');
     }
-
+    //user
     public function index(Request $request)
     {
         $query = Guru::orderBy('name_guru');

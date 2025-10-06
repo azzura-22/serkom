@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('operator.template')
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -10,7 +10,7 @@
           </div>
           <div class="card-body p-4">
 
-            <form action="{{ route('admin.storeekstrakulikuler') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('operator.storeekstrakulikuler') }}" method="POST" enctype="multipart/form-data">
               @csrf
 
               <div class="mb-3">
@@ -39,7 +39,7 @@
               </div>
 
               <div class="d-flex justify-content-between">
-                <a href="{{ route('admin.ekstrakulikuler') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('operator.ekstrakulikuler') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
 

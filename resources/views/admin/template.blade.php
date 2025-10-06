@@ -29,7 +29,13 @@
         /* Sidebar styling */
         .sidebar {
             background-color: #343a40;
-            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            overflow-y: auto;   /* scroll kalau isi panjang */
+            z-index: 1030;
         }
         .sidebar a {
             color: #ffffff;
@@ -40,29 +46,29 @@
         .sidebar a:hover {
             background-color: #495057;
         }
-        /* Responsive sidebar */
+
+        /* ===== Responsive rules ===== */
         @media (max-width: 767.98px) {
             .sidebar {
-                position: fixed;
-                z-index: 1050;
-                width: 220px;
-                left: -220px;
-                top: 0;
+                left: -220px;         /* hidden default */
                 transition: left 0.3s;
-                height: 100vh;
             }
             .sidebar.show {
-                left: 0;
+                left: 0;              /* muncul saat toggle */
             }
             .main-content {
-                margin-left: 0 !important;
+                margin-left: 0 !important; /* konten full width */
             }
         }
         @media (min-width: 768px) {
+            .sidebar {
+                left: 0;
+            }
             .main-content {
-                margin-left: 220px;
+                margin-left: 220px;   /* geser konten di desktop */
             }
         }
+
         /* Hamburger button */
         .sidebar-toggle {
             position: fixed;
@@ -81,7 +87,8 @@
                 display: block;
             }
         }
-        /* Footer responsive */
+
+        /* Footer */
         .footer {
             background: #343a40;
             color: #fff;
@@ -102,71 +109,54 @@
                     <h4 class="text-white">Data sekolah</h4>
                 </div>
                 <ul class="navbar-nav me-auto">
-                    {{-- Dashboard --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin')}}" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-home me-2" style="font-size: 1rem;"></i>
-                            Dashboard
+                            <i class="fas fa-home me-2"></i> Dashboard
                         </a>
                     </li>
-                    {{-- daftar user --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.user')}}" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-users me-2" style="font-size: 1rem;"></i>
-                            Daftar user
+                            <i class="fas fa-users me-2"></i> Daftar user
                         </a>
                     </li>
-                    {{-- Daftar siswa --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.siswa')}}" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-users me-2" style="font-size: 1rem;"></i>
-                            Daftar siswa
+                            <i class="fas fa-users me-2"></i> Daftar siswa
                         </a>
                     </li>
-                    {{-- Daftar guru --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.guru')}}" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-users me-2" style="font-size: 1rem;"></i>
-                            Daftar guru
+                            <i class="fas fa-users me-2"></i> Daftar guru
                         </a>
                     </li>
-                    {{-- Galery --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.galeri')}}" class="nav-link d-flex align-items-center">
-                            <i class="fa-solid fa-image me-2" style="font-size: 1rem;"></i>
-                            Galery
+                            <i class="fa-solid fa-image me-2"></i> Galery
                         </a>
                     </li>
-                    {{-- Berita --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.berita')}}" class="nav-link d-flex align-items-center">
-                            <i class="fa-solid fa-file me-2" style="font-size: 1rem;"></i>
-                            Berita
+                            <i class="fa-solid fa-file me-2"></i> Berita
                         </a>
                     </li>
-                    {{-- Extrakulikuler --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.ekstrakulikuler')}}" class="nav-link d-flex align-items-center">
-                            <i class="fa-solid fa-face-smile me-2" style="font-size: 1rem;"></i>
-                            Extrakulikuler
+                            <i class="fa-solid fa-face-smile me-2"></i> Extrakulikuler
                         </a>
                     </li>
-                    {{-- ProfileSekolah --}}
                     <li class="nav-item d-flex align-items-center">
                         <a href="{{route('admin.profile')}}" class="nav-link d-flex align-items-center">
-                            <i class="fa-solid fa-eye me-2" style="font-size: 1rem;"></i>
-                            ProfileSekolah
+                            <i class="fa-solid fa-eye me-2"></i> ProfileSekolah
                         </a>
                     </li>
-                    {{-- Logout --}}
                     <li class="nav-item d-flex align-items-center">
-                        <a href="{{route('logout')}}" class="nav-link d-flex align-items-center">
-                            <i class="fas fa-sign-out-alt me-2" style="font-size: 1rem;"></i>
-                            Logout
+                        <a href="{{route('admin.logout')}}" class="nav-link d-flex align-items-center">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
                         </a>
                     </li>
                 </ul>
             </nav>
+
             {{-- Main Content --}}
             <main class="col-md-10 ms-sm-auto px-4 py-4 main-content">
                 <h2 class="mb-4">@yield('title')</h2>
@@ -174,12 +164,14 @@
             </main>
         </div>
     </div>
+
     {{-- Footer --}}
     <footer class="footer mt-auto py-3 fixed-bottom d-flex justify-content-center">
         <div class="container text-center">
             <span>&copy; {{ date('Y') }} sekolah smp almadinah</span>
         </div>
     </footer>
+
     {{-- Bootstrap JS --}}
     <script src="{{asset('bootstrap1/js/bootstrap.bundle.min.js')}}"></script>
     {{-- Sidebar toggle script --}}

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\Profilesekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class GaleriController extends Controller
@@ -11,10 +13,12 @@ class GaleriController extends Controller
     //
     public function index(){
         $data['galeri']= Galeri::all();
-        return view('admin.datagaleri',$data);
+        $prefix = Auth::user()->level;
+        return view($prefix.'.datagaleri',$data);
     }
     public function add(){
-        return view('admin.addgaleri');
+        $prefix = Auth::user()->level;
+        return view($prefix.'.addgaleri');
     }
     public function store(Request $request)
 {
@@ -39,15 +43,35 @@ class GaleriController extends Controller
         'kategori' => $request->kategori,
         'tanggal' => $request->tanggal,
     ]);
-
-    return redirect()->route('admin.galeri')->with('success', 'Data galeri berhasil ditambahkan.');
+    $prefix = Auth::user()->level;
+    return redirect()->route($prefix.'.galeri')->with('success', 'Data galeri berhasil ditambahkan.');
 }
 
 public function delete($id){
     $id = Crypt::decrypt($id);
     $galeri = Galeri::find($id);
     $galeri->delete();
-    return redirect()->route('admin.galeri');
+    $prefix = Auth::user()->level;
+    return redirect()->route($prefix.'.galeri');
 }
+
+//user
+public function user (Request $request)
+    {
+        $query = Galeri::orderBy('tanggal', 'desc');
+
+        // Filter by kategori
+        if ($request->has('kategori') && $request->kategori != 'all') {
+            $query->where('kategori', $request->kategori);
+        }
+
+        $galeris = $query->paginate(12); // 12 item per page
+        $totalGaleri = Galeri::count();
+        $totalFoto = Galeri::where('kategori', 'foto')->count();
+        $totalVideo = Galeri::where('kategori', 'vidio')->count();
+        $sekolah = Profilesekolah::first();
+
+        return view('user.galeri', compact('galeris', 'totalGaleri', 'totalFoto', 'totalVideo', 'sekolah'));
+    }
 
 }

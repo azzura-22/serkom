@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('operator.template')
 @section('content')<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -117,7 +117,7 @@
 </head>
 <body>
 <header>
-    <h1>Dashboard Admin Sekolah</h1>
+    <h1>Dashboard operator Sekolah</h1>
 </header>
 <div class="container">
     <div class="content">

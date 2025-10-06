@@ -11,7 +11,7 @@
           </div>
           <div class="card-body p-4">
 
-            <form action="{{ route('admin.profile.update', Crypt::encrypt( $sekolah->id)) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('operator.profile.update', Crypt::encrypt( $sekolah->id)) }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
                 <label for="name_sekolah" class="form-label">Nama Sekolah</label>
@@ -105,7 +105,7 @@
               </div>
 
               <div class="d-flex justify-content-between">
-                <a href="{{ route('admin.profile') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('operator.profile') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary text-white">Update Profil</button>
               </div>
 

@@ -3,9 +3,11 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <!-- col cukup 12, biar full di mobile -->
+        <div class="col-12">
 
-            <div class="card shadow-lg rounded-4">
+            <!-- Card dibatasi max-width -->
+            <div class="card shadow-lg rounded-4 mx-auto" style="max-width: 500px; width: 100%;">
                 <div class="card-header bg-success text-white text-center rounded-top-4">
                     <h4 class="mb-0">Tambah Berita Baru</h4>
                 </div>

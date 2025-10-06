@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
@@ -13,17 +14,20 @@ class BeritaController extends Controller
     public function index()
 {
     $berita = Berita::with('user')->latest()->get();
-    return view('admin.databerita', compact('berita'));
+    $prefix = Auth::user()->level;
+    return view($prefix.'.databerita', compact('berita'));
 }
 
 public function show($id)
 {
     $berita = Berita::with('user')->findOrFail($id);
-    return view('admin.detailberita', compact('berita'));
+    $prefix = Auth::user()->level;
+    return view($prefix.'.detailberita', compact('berita'));
 }
 public function add(){
     $user = User::all();
-    return view('admin.addberita',compact('user'));
+    $prefix = Auth::user()->level;
+    return view($prefix.'.addberita',compact('user'));
 }
 public function store(Request $request)
 {
@@ -51,18 +55,23 @@ public function store(Request $request)
         'user_id' => $request->user_id,
     ]);
 
-    return redirect()->route('admin.berita')->with('success', 'Data berita berhasil ditambahkan.');
+    // Redirect sesuai level
+    $prefix = Auth::user()->level;
+    return redirect()->route($prefix.'.berita')->with('success', 'Data berita berhasil ditambahkan.');
 }
+
 public function delete($id){
     $berita = Berita::find($id);
     $berita->delete();
-    return redirect()->route('admin.berita');
+    $prefix = Auth::user()->level;
+    return redirect()->route($prefix.'.berita');
 }
 public function edit($id)
 {
     $berita = Berita::findOrFail($id);
     $users = User::all();
-    return view('admin.editberita', compact('berita', 'users'));
+    $prefix = Auth::user()->level;
+    return view($prefix.'.editberita', compact('berita', 'users'));
 }
 
 public function update(Request $request, $id)
@@ -96,8 +105,8 @@ public function update(Request $request, $id)
     }
 
     $berita->update($data);
-
-    return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui.');
+    $perpix = Auth::user()->level;
+    return redirect()->route($perpix.'.berita')->with('success', 'Berita berhasil diperbarui.');
 }
 
 //user

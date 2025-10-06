@@ -1,8 +1,8 @@
-@extends('admin.template')
+@extends('operator.template')
 
 @section('content')
 <div class="container py-5">
-    <a class="btn btn-primary" href="{{route('admin.addgaleri')}}">tambah</a>
+    <a class="btn btn-primary" href="{{route('operator.addgaleri')}}">tambah</a>
     <h2 class="text-center mb-4">Galeri</h2>
     <div class="row g-4">
         @foreach($galeri as $item)

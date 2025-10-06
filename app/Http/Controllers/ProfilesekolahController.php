@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profilesekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,12 +13,14 @@ class ProfilesekolahController extends Controller
 
     public function index(){
         $sekolah = Profilesekolah::first();
-       return view('admin.dataprofile',compact('sekolah'));
+        $prefix = Auth::user()->level;
+       return view($prefix.'.dataprofile',compact('sekolah'));
     }
     public function edit($id){
         $id = Crypt::decrypt($id);
         $sekolah = Profilesekolah::find($id);
-       return view('admin.editProfile',compact('sekolah'));
+        $prefix = Auth::user()->level;
+       return view($prefix.'.editProfile',compact('sekolah'));
     }
     public function update(Request $request , string $id){
         $id = Crypt::decrypt($id);
@@ -76,6 +79,7 @@ class ProfilesekolahController extends Controller
             'logo'              => $logoName,
             'Fotokepalasekolah' => $kepsekName
         ]);
-        return redirect()->route('admin.profile')->with('success', 'Profil sekolah berhasil diperbarui.');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.profile')->with('success', 'Profil sekolah berhasil diperbarui.');
     }
 }

@@ -1,8 +1,8 @@
-@extends('admin.template')
+@extends('operator.template')
 
 @section('content')
 <div class="container py-5">
-    <a href="{{route('admin.berita.add')}}" class="btn btn-primary">tambah</a>
+    <a href="{{route('operator.berita.add')}}" class="btn btn-primary">tambah</a>
     <h2 class="text-center mb-4">Daftar Berita</h2>
     <div class="row g-4">
         @csrf
@@ -26,14 +26,14 @@
                     </div>
 
                     <div class="p-3">
-                        <a href="{{ route('admin.berita.show', $item->id) }}" class="btn btn-sm btn-primary w-100">
+                        <a href="{{ route('operator.berita.show', $item->id) }}" class="btn btn-sm btn-primary w-100">
                             Baca Selengkapnya
                         </a>
                     </div>
 
                     <div class="p-2">
-                        <a href="{{route('admin.berita.delete',$item->id)}}" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">hapus</a>
-                        <a href="{{route('admin.berita.edit',$item->id)}}" class="btn btn-primary">edit</a>
+                        <a href="{{route('operator.berita.delete',$item->id)}}" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">hapus</a>
+                        <a href="{{route('operator.berita.edit',$item->id)}}" class="btn btn-primary">edit</a>
                     </div>
                 </div>
             </div>

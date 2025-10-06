@@ -11,7 +11,7 @@
           </div>
           <div class="card-body p-4">
 
-            <form action="{{ route('admin.ekstraupdate', $ekstra->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('operator.ekstraupdate', $ekstra->id) }}" method="POST" enctype="multipart/form-data">
               @csrf
 
               <div class="mb-3">
@@ -58,7 +58,7 @@
               </div>
 
               <div class="d-flex justify-content-between">
-                <a href="{{ route('admin.ekstrakulikuler') }}" class="btn btn-secondary">Kembali</a>
+                <a href="{{ route('operator.ekstrakulikuler') }}" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-warning text-white">Update</button>
               </div>
 

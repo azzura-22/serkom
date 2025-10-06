@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class SiswaController extends Controller
@@ -11,10 +12,12 @@ class SiswaController extends Controller
     //
     public function datasiswa(){
         $data['siswa'] = Siswa::all();
-        return view('admin.datasiswa',$data);
+        $prefix = Auth::user()->level;
+        return view($prefix.'.datasiswa',$data);
     }
     public function addsiswa(){
-        return view('admin.addsiswa');
+        $prefix = Auth::user()->level;
+        return view($prefix.'.addsiswa');
     }
     public function storesiswa(Request $request){
         $request->validate([
@@ -29,18 +32,21 @@ class SiswaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'tahun_masuk' => $request->tahun_masuk,
         ]);
-        return redirect()->route('admin.siswa')->with('success','Data Berhasil Ditambahkan');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.siswa')->with('success','Data Berhasil Ditambahkan');
     }
     public function delete (string $id){
         $id = Crypt::decrypt($id);
         $siswa = Siswa::find($id);
         $siswa->delete();
-        return redirect()->route('admin.siswa')->with('success', 'Data guru berhasil dihapus!');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.siswa')->with('success', 'Data guru berhasil dihapus!');
     }
     public function edit ($id){
         $id = Crypt::decrypt($id);
         $siswa = Siswa::find($id);
-        return view('admin.editsiswa', compact('siswa'));
+        $prefix = Auth::user()->level;
+        return view($prefix.'.editsiswa', compact('siswa'));
     }
     public function update (Request $request,string $id){
         $request->validate([
@@ -56,6 +62,7 @@ class SiswaController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'tahun_masuk' => $request->tahun_masuk,
         ]);
-        return redirect()->route('admin.siswa')->with('success','Data Berhasil Diubah');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.siswa')->with('success','Data Berhasil Diubah');
     }
 }

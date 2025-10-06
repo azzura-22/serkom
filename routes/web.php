@@ -10,13 +10,14 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\admin;
 use App\Models\Guru;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/',[AdminController::class,'login'])->name('login');
 Route::post('/login',[AdminController::class,'Auth'])->name('login.auth');
 Route::middleware(['admin'])->group(function(){
-    Route::get('/admin',[AdminController::class,'Index'])->name('admin');
+    Route::get('/admin',[AdminController::class,'index'])->name('admin');
     Route::get('/admin/guru',[AdminController::class,'guru'])->name('admin.guru');
     Route::get('/admin/guru/add',[GuruController::class , 'addguru'])->name('admin.addguru');
     Route::post('/admin/guru/store',[GuruController::class , 'store'])->name('admin.storeguru');
@@ -70,11 +71,69 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/admin/user/update/{id}',[UserController::class,'update'])->name('admin.user.update');
     Route::get('/admin/delete/user/{id}',[UserController::class,'delete'])->name('admin.delete.user');
 
+    Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
+});
+Route::middleware(['operator'])->group(function() {
+
+    // Dashboard
+    Route::get('/operator', [AdminController::class, 'in'])->name('operator');
+
+    // Guru
+    Route::get('/operator/guru', [AdminController::class, 'guru'])->name('operator.guru');
+    Route::get('/operator/guru/add', [GuruController::class, 'addguru'])->name('operator.addguru');
+    Route::post('/operator/guru/store', [GuruController::class, 'store'])->name('operator.storeguru');
+    Route::get('/operator/guru/edit/{id}', [GuruController::class, 'edit'])->name('operator.editguru');
+    Route::post('/operator/guru/update/{id}', [GuruController::class, 'update'])->name('operator.updateguru');
+    Route::get('/operator/guru/delete/{id}', [GuruController::class, 'delete'])->name('operator.deleteguru');
+
+    // Siswa
+    Route::get('/operator/siswa', [SiswaController::class, 'datasiswa'])->name('operator.siswa');
+    Route::get('/operator/siswa/add', [SiswaController::class, 'addsiswa'])->name('operator.addsiswa');
+    Route::post('/operator/siswa/store', [SiswaController::class, 'storesiswa'])->name('operator.storesiswa');
+    Route::get('/operator/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('operator.editsiswa');
+    Route::post('/operator/siswa/update/{id}', [SiswaController::class, 'update'])->name('operator.updatesiswa');
+    Route::get('/operator/siswa/delete/{id}', [SiswaController::class, 'delete'])->name('operator.deletesiswa');
+
+    // Ekstrakulikuler
+    Route::get('/operator/ekstrakulikuler', [EkstrakulikulerController::class, 'index'])->name('operator.ekstrakulikuler');
+    Route::get('/operator/ekstrakulikuler/add', [EkstrakulikulerController::class, 'add'])->name('operator.addekstrakulikuler');
+    Route::post('/operator/ekstrakulikuler/store', [EkstrakulikulerController::class, 'store'])->name('operator.storeekstrakulikuler');
+    Route::get('/operator/ekstrakulikuler/edit/{id}', [EkstrakulikulerController::class, 'edit'])->name('operator.editekstrakulikuler');
+    Route::post('/operator/ekstrakulikuler/update/{id}', [EkstrakulikulerController::class, 'update'])->name('operator.updateekstrakulikuler');
+    Route::get('/operator/ekstrakulikuler/delete/{id}', [EkstrakulikulerController::class, 'delete'])->name('operator.deleteekstrakulikuler');
+
+    // Galeri
+    Route::get('/operator/galeri', [GaleriController::class, 'index'])->name('operator.galeri');
+    Route::get('/operator/galeri/add', [GaleriController::class, 'add'])->name('operator.addgaleri');
+    Route::post('/operator/galeri/store', [GaleriController::class, 'store'])->name('operator.storegaleri');
+    Route::get('/operator/galeri/delete/{id}', [GaleriController::class, 'delete'])->name('operator.deletegaleri');
+
+    // Berita
+    Route::get('/operator/berita', [BeritaController::class, 'index'])->name('operator.berita');
+    Route::get('/operator/berita/add', [BeritaController::class, 'add'])->name('operator.berita.add');
+    Route::post('/operator/berita/store', [BeritaController::class, 'store'])->name('operator.berita.store');
+    Route::get('/operator/berita/detail/{id}', [BeritaController::class, 'show'])->name('operator.berita.show');
+    Route::get('/operator/berita/edit/{id}', [BeritaController::class, 'edit'])->name('operator.berita.edit');
+    Route::post('/operator/berita/update/{id}', [BeritaController::class, 'update'])->name('operator.berita.update');
+    Route::get('/operator/berita/delete/{id}', [BeritaController::class, 'delete'])->name('operator.berita.delete');
+
+    // Profile Sekolah
+    Route::get('/operator/profile', [ProfilesekolahController::class, 'index'])->name('operator.profile');
+    Route::get('/operator/profile/add', [ProfilesekolahController::class, 'add'])->name('operator.profile.add');
+    Route::post('/operator/profile/store', [ProfilesekolahController::class, 'store'])->name('operator.profile.store');
+    Route::get('/operator/profile/edit/{id}', [ProfilesekolahController::class, 'edit'])->name('operator.profile.edit');
+    Route::post('/operator/profile/update/{id}', [ProfilesekolahController::class, 'update'])->name('operator.profile.update');
+    Route::get('/operator/profile/delete/{id}', [ProfilesekolahController::class, 'delete'])->name('operator.profile.delete');
+
+     Route::get('/operator/user',[UserController::class,'user'])->name('operator.user');
+
     Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 });
+
 //user
 Route::get('/user',[UserController::class,'home'])->name('user');
 Route::get('/user/berita',[BeritaController::class,'berita'])->name('berita');
 Route::get('/user/berita/{id}',[BeritaController::class,'detailberita'])->name('detail.berita');
 Route::get('/user/profile',[UserController::class,'show'])->name('profile');
 Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');
+Route::get('/galeri',[GaleriController::class,'user'])->name('galeri.user');

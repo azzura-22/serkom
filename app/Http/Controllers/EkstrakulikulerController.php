@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ekstrakulikuler;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class EkstrakulikulerController extends Controller
@@ -11,10 +12,12 @@ class EkstrakulikulerController extends Controller
     //
     public function index(){
         $data['ekstra'] = Ekstrakulikuler::all();
-        return view('admin.dataExtrakulikuler',$data);
+        $prefix = Auth::user()->level;
+        return view($prefix.'.dataExtrakulikuler',$data);
     }
     public function add(){
-        return view('admin.addExtra');
+        $prefix = Auth::user()->level;
+        return view($prefix.'.addExtra');
     }
     public function store(Request $request)
 {
@@ -41,20 +44,22 @@ class EkstrakulikulerController extends Controller
         'deksripsi' => $request->deksripsi,
         'gambar' => $filename,
     ]);
-
-    return redirect()->route('admin.ekstrakulikuler')->with('success', 'Data berhasil ditambah');
+    $prefix = Auth::user()->level;
+    return redirect()->route($prefix.'.ekstrakulikuler')->with('success', 'Data berhasil ditambah');
 }
 
     public function delete (string $id){
         $id = Crypt::decrypt($id);
         $ekstra = Ekstrakulikuler::find($id);
         $ekstra->delete();
-        return redirect()->route('admin.ekstrakulikuler')->with('success', 'Data ekstrakulikuler berhasil dihapus!');
+        $prefix = Auth::user()->level;
+        return redirect()->route($prefix.'.ekstrakulikuler')->with('success', 'Data ekstrakulikuler berhasil dihapus!');
     }
     public function edit ($id){
         $id = Crypt::decrypt($id);
         $ekstra = Ekstrakulikuler::find($id);
-        return view('admin.editExtra', compact('ekstra'));
+        $prefix = Auth::user()->level;
+        return view($prefix.'.editExtra', compact('ekstra'));
     }
     public function update(Request $request, string $id)
 {
@@ -83,7 +88,7 @@ class EkstrakulikulerController extends Controller
         'deksripsi' => $request->deksripsi,
         'gambar' => $filename,
     ]);
-
-    return redirect()->route('admin.ekstrakulikuler')->with('success', 'Data berhasil diubah');
+    $prefix = Auth::user()->level;
+    return redirect()->route($prefix.'.ekstrakulikuler')->with('success', 'Data berhasil diubah');
 }
 }

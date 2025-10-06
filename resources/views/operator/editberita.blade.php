@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body p-4">
 
-                    <form action="{{ route('admin.berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('operator.berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -78,7 +78,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.berita') }}" class="btn btn-secondary">Kembali</a>
+                            <a href="{{ route('operator.berita') }}" class="btn btn-secondary">Kembali</a>
                             <button type="submit" class="btn btn-warning">Update</button>
                         </div>
 
