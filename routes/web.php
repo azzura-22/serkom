@@ -57,3 +57,7 @@ Route::middleware(['admin'])->group(function(){
 });
 //user
 Route::get('/user',[UserController::class,'home'])->name('user');
+Route::get('/user/berita',[BeritaController::class,'berita'])->name('berita');
+Route::get('/user/berita/{id}',[BeritaController::class,'detailberita'])->name('detail.berita');
+Route::get('/user/profile',[UserController::class,'show'])->name('profile');
+Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');

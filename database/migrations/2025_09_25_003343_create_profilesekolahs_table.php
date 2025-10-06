@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('visi_misi');
             $table->year('tahun_berdiri');
             $table->text('deskripsi');
+            $table->string('Fotokepalasekolah');
             $table->timestamps();
         });
     }

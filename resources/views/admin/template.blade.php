@@ -57,27 +57,27 @@
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
-                                <i class="fas fa-user-tie me-2" style="font-size: 1rem;"></i>
+                            <a href="{{route('admin.galeri')}}" class="nav-link d-flex align-items-center">
+                                <i class="fa-solid fa-image me-2" style="font-size: 1rem;"></i>
                                 Galery
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
-                                <i class="fas fa-tags me-2" style="font-size: 1rem;"></i>
+                            <a href="{{route('admin.berita')}}" class="nav-link d-flex align-items-center">
+                                <i class="fa-solid fa-file me-2" style="font-size: 1rem;"></i>
                                 Berita
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{route('admin.ekstrakulikuler')}}" class="nav-link d-flex align-items-center">
-                                <i class="fas fa-arrow-up me-2" style="font-size: 1rem;"></i>
+                                <i class="fa-solid fa-face-smile me-2" style="font-size: 1rem;"></i>
                                 Extrakulikuler
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-link d-flex align-items-center">
-                                <i class="fas fa-arrow-down me-2" style="font-size: 1rem;"></i>
-                                FrofileSekolah
+                                <i class="fa-solid fa-eye me-2" style="font-size: 1rem;"></i>
+                                ProfileSekolah
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">

@@ -15,8 +15,13 @@ class UserController extends Controller
 {
     $sekolah = Profilesekolah::first();
     $beritas = Berita::latest()->take(3)->get();
-    $galeris = Galeri::latest()->take(8)->get();
-    $ekskuls = Ekstrakulikuler::all();
+    $galeris = Galeri::latest()->where('kategori','foto')->take(8)->get();
+    $ekskuls = Ekstrakulikuler::latest()->take(3)->get();
     return view('user.home', compact('beritas', 'galeris','ekskuls','sekolah'));
 }
+public function show()
+    {
+        $profile = ProfileSekolah::first();
+        return view('user.profile', compact('profile'));
+    }
 }

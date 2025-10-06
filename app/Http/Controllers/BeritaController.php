@@ -99,4 +99,14 @@ public function update(Request $request, $id)
 
     return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui.');
 }
+
+//user
+public function berita(){
+    $data['berita'] = Berita::all();
+    return view('user.berita',$data);
+}
+public function detailberita($id){
+    $data['berita']= Berita::find($id);
+    return view('user.beritaDetail',$data);
+}
 }

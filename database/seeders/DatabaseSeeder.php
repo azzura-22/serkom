@@ -30,16 +30,17 @@ class DatabaseSeeder extends Seeder
             'foto' => 'default.jpg',
         ]);
         Profilesekolah::create([
-            'name_sekolah'  => 'SMK YPC TASIKMALAYA',
-            'kepalasekolah' => 'Drs. H. Ahmad Suryana, M.Pd.',
-            'foto'          => 'smk.webp', // simpan di storage/app/public/sekolah/
-            'logo'          => 'logo.png',    // simpan di storage/app/public/sekolah/
-            'npsn'          => '20212345',
-            'alamat'        => 'Jl. Raya Ciawi No.123, Tasikmalaya, Jawa Barat',
-            'kontak'        => '(0265) 123456',
-            'visi_misi'     => 'Menjadi sekolah unggulan dalam bidang teknologi dan industri, serta menghasilkan lulusan yang beriman, berilmu, dan berakhlak mulia.',
-            'tahun_berdiri' => '1995',
-            'deskripsi'     => 'SMK YPC Tasikmalaya adalah sekolah kejuruan yang fokus pada bidang teknologi, bisnis, dan industri dengan dukungan sarana prasarana modern serta tenaga pengajar berpengalaman.',
+            'name_sekolah'      => 'SMAN 8 Yogyakarta',
+            'kepalasekolah'     => 'Fadiyah Suryani, S.Pd., M.Pd.Si.',
+            'foto'              => 'skolah.webp', // simpan di storage/app/public/sekolah/
+            'logo'              => 'sekolah1.jpg',  // simpan di storage/app/public/sekolah/
+            'npsn'              => '20403708',   // NPSN resmi SMAN 8 Yogyakarta
+            'alamat'            => 'Jl. Sidobali No.1, Muja Muju, Umbulharjo, Yogyakarta',
+            'kontak'            => '(0274) 512888',
+            'visi_misi'         => 'Menjadi sekolah menengah atas unggulan yang berlandaskan iman, ilmu, dan teknologi serta berwawasan global.',
+            'tahun_berdiri'     => '1980',
+            'deskripsi'         => 'SMAN 8 Yogyakarta adalah sekolah menengah atas negeri yang dikenal sebagai salah satu sekolah favorit di Yogyakarta, dengan prestasi akademik dan non-akademik yang gemilang.',
+            'Fotokepalasekolah' => 'kepalasekolah.png',
         ]);
     }
 }

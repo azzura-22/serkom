@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Profilesekolah;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -72,6 +73,23 @@ class GuruController extends Controller
         $guru = Guru::find($id);
         $guru->delete();
         return redirect()->route('admin.guru')->with('success', 'Data guru berhasil dihapus!');
+    }
+
+    public function index(Request $request)
+    {
+        $query = Guru::orderBy('name_guru');
+
+        if ($request->has('mapel') && $request->mapel != 'all') {
+            $query->where('mapel', $request->mapel);
+        }
+
+        $gurus = $query->get();
+        $mapelList = Guru::distinct()->pluck('mapel')->sort();
+        $totalGurus = Guru::count();
+        $sekolah = Profilesekolah::first();
+
+
+        return view('user.guru', compact('gurus', 'mapelList', 'totalGurus', 'sekolah'));
     }
 }
 
