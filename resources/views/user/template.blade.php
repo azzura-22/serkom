@@ -165,7 +165,7 @@
                         <a class="nav-link {{ request()->is('user/berita*') ? 'active' : '' }}"
                            href="{{ route('berita') }}">
                            <i class="fas fa-newspaper me-1"></i> Berita Saya
-                           <span class="notification-badge">3</span>
+                           <span class="notification-badge">{{$berita->count()}}</span>
                         </a>
                     </li>
 

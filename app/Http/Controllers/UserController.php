@@ -7,6 +7,8 @@ use App\Models\Ekstrakulikuler;
 use App\Models\Galeri;
 use App\Models\Profilesekolah;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
@@ -23,5 +25,57 @@ public function show()
     {
         $profile = ProfileSekolah::first();
         return view('user.profile', compact('profile'));
+    }
+    public function user(){
+        $users = User::all();
+        return view('admin.datauser',compact('users'));
+    }
+    public function add(){
+        return view('admin.adduser');
+    }
+    public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'username' =>'required',
+            'level' => 'required',
+            'password' => 'required'
+        ]);
+
+        User::create([
+            'name'=> $request->name,
+            'username'=> $request->username,
+            'level'=> $request->level,
+            'password'=> bcrypt($request->password)
+        ]);
+        return redirect()->route('admin.user');
+    }
+    public function edit ($id){
+        $id = Crypt::decrypt($id);
+        $user = User::find($id);
+        return view('admin.edituser', compact('user'));
+    }
+    public function update(Request $request, $id){
+        $id = Crypt::decrypt($id);
+        $request->validate([
+            'name' => 'required',
+            'username' =>'required',
+            'level' => 'required',
+            'password' => 'required'
+        ]);
+        User::find($id)->update([
+            'name'=> $request->name,
+            'username'=> $request->username,
+            'level'=> $request->level,
+            'password'=> bcrypt($request->password)
+        ]);
+        return redirect()->route('admin.user');
+    }
+    public function destroy($id){
+        User::find($id)->delete();
+        return redirect()->route('admin.user');
+    }
+    public function template(){
+        $berita = Berita::latest()->take(3)->get();
+        return view('user.template',compact('berita'));
     }
 }

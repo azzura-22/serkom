@@ -62,6 +62,14 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/profile/edit/{id}',[ProfilesekolahController::class,'edit'])->name('admin.profile.edit');
     Route::post('/admin/profile/update/{id}',[ProfilesekolahController::class,'update'])->name('admin.profile.update');
 
+    //user
+    Route::get('/admin/user',[UserController::class,'user'])->name('admin.user');
+    Route::get('/admin/add/user',[UserController::class,'add'])->name('admin.adduser');
+    Route::post('/admin/user/create',[UserController::class,'store'])->name('admin.storeuser');
+    Route::get('/admin/user/edit/{id}',[UserController::class,'edit'])->name('admin.edit.user');
+    Route::post('/admin/user/update/{id}',[UserController::class,'update'])->name('admin.user.update');
+    Route::get('/admin/delete/user/{id}',[UserController::class,'delete'])->name('admin.delete.user');
+
     Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 });
 //user

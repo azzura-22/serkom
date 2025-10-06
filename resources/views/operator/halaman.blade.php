@@ -113,10 +113,6 @@
         font-size: 35px;
         margin-left: 8px;
     }
-    a{
-        text-decoration: none;
-        color: white
-    }
     </style>
 </head>
 <body>
@@ -148,7 +144,7 @@
             <div class="card">
                 <div class="card">
                 <div class="container-fluid d-flex justify-content-center align-items-center">
-                    <a href="{{ route('admin.galeri') }}" ><h3 class="me-2">galeri</h3></a>
+                    <h3 class="me-2">galeri</h3>
                     <i class="fa-solid fa-image" style="font-size: 30px;"></i>
                 </div>
                 <h3>{{$galeri->count()}}</h3>

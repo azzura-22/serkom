@@ -41,9 +41,4 @@
 
     </div>
 </div>
-<script>
-    new DataTable('#example',{
-        responsive:true
-    })
-</script>
 @endsection
