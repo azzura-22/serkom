@@ -30,8 +30,8 @@ class DatabaseSeeder extends Seeder
             'foto' => 'default.jpg',
         ]);
         Profilesekolah::create([
-            'name_sekolah'      => 'SMAN 8 Yogyakarta',
-            'kepalasekolah'     => 'Fadiyah Suryani, S.Pd., M.Pd.Si.',
+            'name_sekolah'      => 'SMA',
+            'kepalasekolah'     => 'AHMAD, S.Pd., M.Pd.Si.',
             'foto'              => 'skolah.webp', // simpan di storage/app/public/sekolah/
             'logo'              => 'sekolah1.jpg',  // simpan di storage/app/public/sekolah/
             'npsn'              => '20403708',   // NPSN resmi SMAN 8 Yogyakarta
@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
             'kontak'            => '(0274) 512888',
             'visi_misi'         => 'Menjadi sekolah menengah atas unggulan yang berlandaskan iman, ilmu, dan teknologi serta berwawasan global.',
             'tahun_berdiri'     => '1980',
-            'deskripsi'         => 'SMAN 8 Yogyakarta adalah sekolah menengah atas negeri yang dikenal sebagai salah satu sekolah favorit di Yogyakarta, dengan prestasi akademik dan non-akademik yang gemilang.',
-            'Fotokepalasekolah' => 'kepalasekolah.png',
+            'deskripsi'         => 'SMA adalah sekolah menengah atas negeri yang dikenal sebagai salah satu sekolah favorit di Yogyakarta, dengan prestasi akademik dan non-akademik yang gemilang.',
+            'Fotokepalasekolah' => 'sementara.png',
         ]);
     }
 }

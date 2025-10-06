@@ -24,7 +24,8 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->judul }}</h5>
                         <p class="card-text text-muted">{{ $item->keterangan }}</p>
-                        <a class="btn btn-danger" href="{{route('admin.deletegaleri',Crypt::encrypt($item->id))}}" onclick="return confirm('Yakin ingin menghapus data ini?')">delete</a>
+                        <a class="btn btn-danger" href="{{route('operator.deletegaleri',Crypt::encrypt($item->id))}}" onclick="return confirm('Yakin ingin menghapus data ini?')">delete</a>
+                        <a class="btn btn-warning" href="{{route('operator.editgaleri',Crypt::encrypt($item->id))}}">edit</a>
                     </div>
                     <div class="card-footer text-muted small">
                         {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}

@@ -1,4 +1,4 @@
-@extends('admin.template')
+@extends('operator.template')
 
 @section('content')
 <div class="container py-5">
@@ -11,7 +11,7 @@
           </div>
           <div class="card-body p-4">
 
-            <form action="{{ route('operator.ekstraupdate', $ekstra->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('operator.updateekstrakulikuler', $ekstra->id) }}" method="POST" enctype="multipart/form-data">
               @csrf
 
               <div class="mb-3">

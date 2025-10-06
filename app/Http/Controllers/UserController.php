@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\Ekstrakulikuler;
 use App\Models\Galeri;
+use App\Models\Guru;
 use App\Models\Profilesekolah;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +21,11 @@ class UserController extends Controller
     $sekolah = Profilesekolah::first();
     $beritas = Berita::latest()->take(3)->get();
     $galeris = Galeri::latest()->where('kategori','foto')->take(8)->get();
+    $jumlahguru = Guru::count();
+    $jmsiswa = Siswa::count();
+    $jmekskul = Ekstrakulikuler::count();
     $ekskuls = Ekstrakulikuler::latest()->take(3)->get();
-    return view('user.home', compact('beritas', 'galeris','ekskuls','sekolah'));
+    return view('user.home', compact('beritas', 'galeris','ekskuls','sekolah','jumlahguru','jmsiswa','jmekskul'));
 }
 public function show()
     {

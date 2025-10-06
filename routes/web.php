@@ -46,6 +46,9 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/galeri/add',[GaleriController::class,'add'])->name('admin.addgaleri');
     Route::post('/admin/galeri/store',[GaleriController::class,'store'])->name('admin.storegaleri');
     Route::get('/admin/galeri/delete/{id}',[GaleriController::class,'delete'])->name('admin.deletegaleri');
+    Route::get('/admin/galeri/edit/{id}',[GaleriController::class,'edit'])->name('admin.editgaleri');
+    Route::post('/admin/galeri/update/{id}',[GaleriController::class,'update'])->name('admin.updategaleri');
+
 
     //berita
     Route::get('/admin/berita',[BeritaController::class,'index'])->name('admin.berita');
@@ -107,6 +110,8 @@ Route::middleware(['operator'])->group(function() {
     Route::get('/operator/galeri/add', [GaleriController::class, 'add'])->name('operator.addgaleri');
     Route::post('/operator/galeri/store', [GaleriController::class, 'store'])->name('operator.storegaleri');
     Route::get('/operator/galeri/delete/{id}', [GaleriController::class, 'delete'])->name('operator.deletegaleri');
+    Route::get('/operator/galeri/edit/{id}',[GaleriController::class,'edit'])->name('operator.editgaleri');
+    Route::post('/operator/galeri/update/{id}',[GaleriController::class,'update'])->name('operator.updategaleri');
 
     // Berita
     Route::get('/operator/berita', [BeritaController::class, 'index'])->name('operator.berita');
@@ -125,7 +130,7 @@ Route::middleware(['operator'])->group(function() {
     Route::post('/operator/profile/update/{id}', [ProfilesekolahController::class, 'update'])->name('operator.profile.update');
     Route::get('/operator/profile/delete/{id}', [ProfilesekolahController::class, 'delete'])->name('operator.profile.delete');
 
-     Route::get('/operator/user',[UserController::class,'user'])->name('operator.user');
+    Route::get('/operator/user',[UserController::class,'user'])->name('operator.user');
 
     Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 });

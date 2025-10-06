@@ -406,6 +406,20 @@
                     </ul>
                 </div>
             </div>
+            <div class="row mt-5 text-center">
+                        <div class="col-4">
+                            <span class="stat-number">{{$jumlahguru}}</span>
+                            <span class="stat-label">Guru</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="stat-number">{{$jmsiswa}}</span>
+                            <span class="stat-label">Siswa</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="stat-number">{{$jmekskul}}</span>
+                            <span class="stat-label">ekstrakulikuler</span>
+                        </div>
+            </div>
         </div>
     </section>
 
@@ -426,10 +440,6 @@
                                 <h5 class="card-title">{{ $ekskul->name_ekstra }}</h5>
                                 <!-- Deskripsi singkat -->
                                 <p class="card-text flex-grow-1">{{ Str::limit($ekskul->deksripsi, 100) }}</p>
-                                <!-- Kategori ekstrakurikuler -->
-                                <div class="mt-auto">
-                                    <span class="badge bg-primary rounded-pill">{{ $ekskul->kategori ?? 'Umum' }}</span>
-                                </div>
                             </div>
                         </div>
                     </div>

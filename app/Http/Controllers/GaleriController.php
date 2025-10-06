@@ -55,6 +55,47 @@ public function delete($id){
     return redirect()->route($prefix.'.galeri');
 }
 
+public function edit($id){
+    $id = Crypt::decrypt($id);
+    $galeri = Galeri::find($id);
+    $prefix = Auth::user()->level;
+    return view($prefix.'.editgaleri',compact('galeri'));
+}
+
+public function update(Request $request, string $id)
+{
+    $request->validate([
+        'judul'      => 'required|string|max:255',
+        'keterangan' => 'required|string',
+        'kategori'   => 'required|in:foto,vidio',
+        'tanggal'    => 'required|date',
+        'file'       => 'nullable|mimes:jpg,jpeg,png,mp4,mov,avi|max:10240', // max 10MB
+    ]);
+
+    $galeri = Galeri::findOrFail($id);
+
+    // Cek apakah ada file baru
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = time() . '-' . $request->judul . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('galeri', $filename, 'public');
+    } else {
+        $filename = $galeri->file;
+    }
+
+    // Update data
+    $galeri->update([
+        'judul'      => $request->judul,
+        'keterangan' => $request->keterangan,
+        'kategori'   => $request->kategori,
+        'tanggal'    => $request->tanggal,
+        'file'       => $filename,
+    ]);
+
+    $prefix = Auth::user()->level; // supaya sesuai dengan level user admin/operator
+    return redirect()->route($prefix.'.galeri')->with('success', 'Data galeri berhasil diubah');
+}
+
 //user
 public function user (Request $request)
     {
@@ -73,5 +114,4 @@ public function user (Request $request)
 
         return view('user.galeri', compact('galeris', 'totalGaleri', 'totalFoto', 'totalVideo', 'sekolah'));
     }
-
 }

@@ -21,11 +21,11 @@ class operator
                 return $next($request);
             }
             else{
-                return redirect('login');
+                return redirect('/');
             }
         }
         else{
-            return redirect('login');
+            return redirect('/');
         }
     }
 }
