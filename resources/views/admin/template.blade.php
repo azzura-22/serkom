@@ -75,7 +75,7 @@
                             </a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link d-flex align-items-center">
+                            <a href="{{route('admin.profile')}}" class="nav-link d-flex align-items-center">
                                 <i class="fa-solid fa-eye me-2" style="font-size: 1rem;"></i>
                                 ProfileSekolah
                             </a>

@@ -50,7 +50,7 @@
                 <input type="file" id="gambar" name="gambar" class="form-control">
                 @if($ekstra->gambar)
                   <div class="mt-2">
-                    <img src="{{ asset('storage/' . $ekstra->gambar) }}"
+                    <img src="{{ asset('storage/fotoextra/' . $ekstra->gambar) }}"
                          alt="Gambar Ekstrakurikuler"
                          width="120" class="rounded">
                   </div>

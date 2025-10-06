@@ -338,7 +338,7 @@
             }
         }
 
-        /* Animasi fade in murni CSS */
+        /* Animasi fade in CSS */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }

@@ -84,7 +84,7 @@ class GuruController extends Controller
         }
 
         $gurus = $query->get();
-        $mapelList = Guru::distinct()->pluck('mapel')->sort();
+        $mapelList = Guru::pluck('mapel')->sort();
         $totalGurus = Guru::count();
         $sekolah = Profilesekolah::first();
 

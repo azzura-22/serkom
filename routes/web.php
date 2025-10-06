@@ -5,11 +5,13 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\EkstrakulikulerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\ProfilesekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\admin;
 use App\Models\Guru;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/',[AdminController::class,'login'])->name('login');
 Route::post('/login',[AdminController::class,'Auth'])->name('login.auth');
@@ -52,6 +54,13 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/berita/delete/{id}',[BeritaController::class,'delete'])->name('admin.berita.delete');
     Route::get('/admin/berita/edit/{id}',[BeritaController::class,'edit'])->name('admin.berita.edit');
     Route::post('/admin/berita/update/{id}',[BeritaController::class,'update'])->name('admin.berita.update');
+
+    Route::get('/admin/profile',[ProfilesekolahController::class,'index'])->name('admin.profile');
+    Route::get('/admin/profile/add',[ProfilesekolahController::class,'add'])->name('admin.profile.add');
+    Route::post('/admin/profile/store',[ProfilesekolahController::class,'store'])->name('admin.profile.store');
+    Route::get('/admin/profile/delete/{id}',[ProfilesekolahController::class,'delete'])->name('admin.profile.delete');
+    Route::get('/admin/profile/edit/{id}',[ProfilesekolahController::class,'edit'])->name('admin.profile.edit');
+    Route::post('/admin/profile/update/{id}',[ProfilesekolahController::class,'update'])->name('admin.profile.update');
 
     Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 });
