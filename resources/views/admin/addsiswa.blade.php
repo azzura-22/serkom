@@ -2,11 +2,20 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $item )
+                    <li>{{$item}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
       <div class="col-md-6">
 
         <div class="card shadow-lg rounded-4">
           <div class="card-header bg-primary text-white text-center rounded-top-4">
-            <h4 class="mb-0">Tambah Data Guru</h4>
+            <h4 class="mb-0">Tambah Data siswa</h4>
           </div>
           <div class="card-body p-4">
 
@@ -20,7 +29,7 @@
 
               <div class="mb-3">
                 <label for="nisn" class="form-label">nisn</label>
-                <input type="text" id="nisn" name="nisn" class="form-control" placeholder="Masukkan nisn" required>
+                <input type="text" id="nisn" name="nisn" class="form-control" placeholder="Masukkan nisn" required >
               </div>
 
               <div class="mb-3">

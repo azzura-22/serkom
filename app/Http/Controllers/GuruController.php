@@ -20,11 +20,11 @@ class GuruController extends Controller
     {
         $request->validate([
             'name_guru' => 'required',
-            'nip'       => 'required|unique:gurus,nip',
+            'nip'       => 'required|unique:gurus,nip|max:10',
             'mapel'     => 'required',
             'foto'      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        
         if ($request->hasFile('foto')) {
             $foto     = $request->file('foto');
             $filename = time() . '-' . $request->name_guru . '.' . $foto->getClientOriginalExtension();

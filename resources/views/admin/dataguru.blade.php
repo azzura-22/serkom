@@ -1,9 +1,12 @@
 @extends('admin.template')
 @section('content')
-<script>
-
-</script>
 <div class="container mt-4">
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible" style="margin-block:20px">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
     <a href="/admin/guru/add" class="btn btn-primary">tambah</a>
   <h3 class="text-center mb-3">Daftar Guru</h3>
   <div class="table-responsive min-vh-100">

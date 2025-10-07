@@ -22,7 +22,7 @@ class SiswaController extends Controller
     public function storesiswa(Request $request){
         $request->validate([
             'nama' => 'required',
-            'nisn' => 'required',
+            'nisn' => 'required|unique:siswas,nisn|max:10',
             'jenis_kelamin' => 'required',
             'tahun_masuk' => 'required',
         ]);
@@ -51,7 +51,7 @@ class SiswaController extends Controller
     public function update (Request $request,string $id){
         $request->validate([
             'nama' => 'required',
-            'nisn' => 'required',
+            'nisn' => 'required|unique:siswas,nisn|max:10',
             'jenis_kelamin' => 'required',
             'tahun_masuk' => 'required',
         ]);
@@ -64,5 +64,10 @@ class SiswaController extends Controller
         ]);
         $prefix = Auth::user()->level;
         return redirect()->route($prefix.'.siswa')->with('success','Data Berhasil Diubah');
+    }
+    //user
+    public function user(){
+        $siswa = Siswa::all();
+        return view('user.datasiswa', compact('siswa'));
     }
 }

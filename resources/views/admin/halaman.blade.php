@@ -164,19 +164,6 @@
             </div>
             </div>
         </div>
-
-        {{-- <h2>Berita Terbaru</h2>
-        <table>
-            <tr>
-
-            </tr>
-            <tr>
-
-            </tr>
-            <tr>
-
-            </tr>
-        </table> --}}
     </div>
 </div>
 </body>

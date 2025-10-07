@@ -14,8 +14,8 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
-Route::get('/',[AdminController::class,'login'])->name('login');
-Route::post('/login',[AdminController::class,'Auth'])->name('login.auth');
+Route::get('/login',[AdminController::class,'login'])->name('login');
+Route::post('/login/auth',[AdminController::class,'Auth'])->name('login.auth');
 Route::middleware(['admin'])->group(function(){
     Route::get('/admin',[AdminController::class,'index'])->name('admin');
     Route::get('/admin/guru',[AdminController::class,'guru'])->name('admin.guru');
@@ -136,9 +136,11 @@ Route::middleware(['operator'])->group(function() {
 });
 
 //user
-Route::get('/user',[UserController::class,'home'])->name('user');
+Route::get('/',[UserController::class,'home'])->name('user');
 Route::get('/user/berita',[BeritaController::class,'berita'])->name('berita');
 Route::get('/user/berita/{id}',[BeritaController::class,'detailberita'])->name('detail.berita');
 Route::get('/user/profile',[UserController::class,'show'])->name('profile');
 Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');
 Route::get('/galeri',[GaleriController::class,'user'])->name('galeri.user');
+Route::get('/user/ekstra',[EkstrakulikulerController::class,'user'])->name('ektra.user');
+Route::get('/user/siswa',[SiswaController::class,'user'])->name('siswa');

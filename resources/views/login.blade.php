@@ -15,7 +15,7 @@
       <h3 class="mt-2">Login</h3>
     </div>
 
-    <form action="/login" method="POST">
+    <form action="/login/auth" method="POST">
         @csrf
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>

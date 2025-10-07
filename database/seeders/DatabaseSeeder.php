@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'admin11',
-            'username' => 'admin22',
+            'username' => 'admin2',
             'level' => 'admin',
-            'password' => '111',
+            'password' => '222',
         ]);
         Guru::create([
             'name_guru' => 'Budi',
@@ -34,13 +34,13 @@ class DatabaseSeeder extends Seeder
             'kepalasekolah'     => 'AHMAD, S.Pd., M.Pd.Si.',
             'foto'              => 'skolah.webp', // simpan di storage/app/public/sekolah/
             'logo'              => 'sekolah1.jpg',  // simpan di storage/app/public/sekolah/
-            'npsn'              => '20403708',   // NPSN resmi SMAN 8 Yogyakarta
+            'npsn'              => '20403708',
             'alamat'            => 'Jl. Sidobali No.1, Muja Muju, Umbulharjo, Yogyakarta',
             'kontak'            => '(0274) 512888',
             'visi_misi'         => 'Menjadi sekolah menengah atas unggulan yang berlandaskan iman, ilmu, dan teknologi serta berwawasan global.',
             'tahun_berdiri'     => '1980',
             'deskripsi'         => 'SMA adalah sekolah menengah atas negeri yang dikenal sebagai salah satu sekolah favorit di Yogyakarta, dengan prestasi akademik dan non-akademik yang gemilang.',
-            'Fotokepalasekolah' => 'sementara.png',
+            'Fotokepalasekolah' => 'sementara.jpg',
         ]);
     }
 }

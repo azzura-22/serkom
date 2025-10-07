@@ -3,7 +3,15 @@
 <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
-
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $item )
+                    <li>{{$item}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="card shadow-lg rounded-4">
           <div class="card-header bg-primary text-white text-center rounded-top-4">
             <h4 class="mb-0">Tambah Data Guru</h4>

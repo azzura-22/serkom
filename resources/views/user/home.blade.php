@@ -492,35 +492,46 @@
             <div id="galeriCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <!-- Loop untuk setiap chunk galeri (4 item per slide) -->
-                    @foreach ($galeris->chunk(4) as $chunkIndex => $galeriChunk)
-                        <div class="carousel-item {{ $chunkIndex == 0 ? 'active' : '' }}">
-                            <div class="row g-3">
-                                <!-- Loop untuk setiap item dalam chunk -->
-                                @foreach ($galeriChunk as $galeri)
-                                    <div class="col-md-3 col-6">
-                                        @if($galeri->kategori == 'foto')
-                                            <!-- Tampilkan gambar jika kategori foto -->
-                                            <img src="{{ asset('storage/galeri/' . $galeri->file) }}"
-                                                 class="d-block w-100 img-fluid rounded shadow"
-                                                 alt="{{ $galeri->judul }}"
-                                                 style="height: 200px; object-fit: cover;">
-                                        @else
-                                            <!-- Tampilkan video jika kategori video -->
-                                            <div class="video-container">
-                                                <video controls class="w-100 rounded shadow" style="height: 200px; object-fit: cover;">
-                                                    <source src="{{ asset('storage/galeri/' . $galeri->file) }}" type="video/mp4">
-                                                    Browser Anda tidak mendukung tag video.
-                                                </video>
-                                                <div class="video-overlay">
-                                                    <i class="fas fa-play-circle text-white" style="font-size: 3rem;"></i>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
+                    @php
+                        $perSlide = 4; // jumlah item per slide
+                        $total = count($galeris);
+                    @endphp
+
+            @for ($i = 0; $i < $total; $i++)
+            {{-- Buka slide baru setiap 4 item --}}
+            @if ($i % $perSlide == 0)
+        <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
+            <div class="row g-3">
+    @endif
+
+    @php $galeri = $galeris[$i]; @endphp
+    <div class="col-md-3 col-6">
+        @if($galeri->kategori == 'foto')
+            <!-- Tampilkan gambar jika kategori foto -->
+            <img src="{{ asset('storage/galeri/' . $galeri->file) }}"
+                 class="d-block w-100 img-fluid rounded shadow"
+                 alt="{{ $galeri->judul }}"
+                 style="height: 200px; object-fit: cover;">
+        @else
+            <!-- Tampilkan video jika kategori video -->
+            <div class="video-container position-relative">
+                <video class="gallery-video w-100" controls>
+                     <source src="{{ asset('storage/galeri/' . $galeri->file) }}" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <div class="video-overlay position-absolute top-50 start-50 translate-middle">
+                    <i class="fas fa-play-circle text-white" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        @endif
+    </div>
+
+    {{-- Tutup slide setiap 4 item atau jika sudah item terakhir --}}
+    @if (($i + 1) % $perSlide == 0 || $i + 1 == $total)
+            </div>
+        </div>
+    @endif
+@endfor
                 </div>
 
                 <!-- Kontrol carousel sebelumnya -->
@@ -547,7 +558,7 @@
         <div class="container text-center">
             <h2 class="section-title text-white">Hubungi Kami</h2>
 
-            <!-- Informasi kontak dalam card yang lebih menarik -->
+            <!-- Informasi kontak dalam card -->
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="contact-info">
@@ -578,7 +589,7 @@
                     <a href="#" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" title="YouTube">
+                    <a href="https://youtu.be/dQw4w9WgXcQ?list=RDdQw4w9WgXcQ" title="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
                     <a href="#" title="Twitter">

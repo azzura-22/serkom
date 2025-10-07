@@ -221,59 +221,6 @@
                     </div>
                 @endforelse
             </div>
-
-            <!-- Detailed List View -->
-            @if($gurus->count() > 0)
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h3 class="section-title">Daftar Lengkap Guru</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nama Guru</th>
-                                    <th>NIP</th>
-                                    <th>Mata Pelajaran</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($gurus as $index => $guru)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            @if($guru->foto && Storage::exists('public/fotoguru/' . $guru->foto))
-                                                <img src="{{ asset('storage/fotoguru/' . $guru->foto) }}"
-                                                     alt="{{ $guru->name_guru }}"
-                                                     class="rounded-circle me-3"
-                                                     style="width: 40px; height: 40px; object-fit: cover;">
-                                            @elseif($guru->foto && Storage::exists('public/fotoguru/' . $guru->foto))
-                                                <img src="{{ asset('storage/fotoguru/' . $guru->foto) }}"
-                                                     alt="{{ $guru->name_guru }}"
-                                                     class="rounded-circle me-3"
-                                                     style="width: 40px; height: 40px; object-fit: cover;">
-                                            @else
-                                                <img src="https://via.placeholder.com/40x40/2c3e50/ffffff?text={{ substr($guru->name_guru, 0, 1) }}"
-                                                     alt="{{ $guru->name_guru }}"
-                                                     class="rounded-circle me-3"
-                                                     style="width: 40px; height: 40px; object-fit: cover;">
-                                            @endif
-                                            {{ $guru->name_guru }}
-                                        </div>
-                                    </td>
-                                    <td>{{ $guru->nip }}</td>
-                                    <td>
-                                        <span class="badge bg-primary">{{ $guru->mapel }}</span>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            @endif
         </div>
     </section>
 

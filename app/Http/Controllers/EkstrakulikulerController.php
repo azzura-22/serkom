@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ekstrakulikuler;
+use App\Models\Profilesekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -90,5 +91,12 @@ class EkstrakulikulerController extends Controller
     ]);
     $prefix = Auth::user()->level;
     return redirect()->route($prefix.'.ekstrakulikuler')->with('success', 'Data berhasil diubah');
+}
+//user
+public function user(){
+    $sekolah = Profilesekolah::first();
+    $ekstras = Ekstrakulikuler::all();
+    $totalEkstra = $ekstras->count();
+    return view('user.eksul',compact('sekolah','ekstras','totalEkstra'));
 }
 }
